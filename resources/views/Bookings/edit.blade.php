@@ -1,0 +1,122 @@
+@extends('layout')
+@section('content')
+
+    <div class="container">
+        <form action="{{ route('booking.store', $booking->id) }}" method="POST">
+            @csrf
+            <div class="row p-3 ">
+                <div class="col-5">
+                    <div>
+                        <label for="check in" class="form-label">Choose Customer Name</label>
+                        <select class="form-select " name="customer_id">
+                            <option>Choos Customer</option>
+                            @foreach ($customers as $customer)
+
+                                <option value="{{ $customer->id }}">{{ $customer->customerName }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="">
+                        <label for="check in" class="form-label my-3">Check out</label>
+                        <input type="date" class="form-control" name="checkout_date"
+                            value="{{ $booking->checkout_date }}">
+                    </div>
+                    <div>
+                        <label for="check in" class="form-label my-3">Total Staying Days</label>
+                        <input type="text" class="form-control  " name="staying_days"
+                            value="{{ $booking->staying_days }} " />
+                    </div>
+
+                </div>
+
+                <div class="   col-5">
+
+
+                    <div>
+                        <label for="check in" class="form-label">Check in</label>
+                        <input type="date" class="form-control checkin-date" name="checkin_date"
+                            value="{{ $booking->checkin_date }}">
+                    </div>
+                    <div class="        ">
+                        <label for="total_adults" class="form-label my-3">Availabe Rooms</label>
+                        <select class="form-control room-list" name="room_id">
+                            <option selected>Availabe Rooms</option>
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <label for="check in" class="form-label my-3">Total Persons</label>
+                        <input type="text" class="form-control " name="total_adults"
+                            value="{{ $booking->total_adults }}">
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+                <button type=" submit" class="btn btn-primary mt-3">Book it</button>
+
+            </div>
+        </form>
+
+    </div>
+
+@endsection
+
+
+
+
+
+@section('script')
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".checkin-date").on('blur', function() {
+
+                var _checkindate = $(this).val();
+                console.log(_checkindate);
+                // Ajax
+                $.ajax({
+                    url: "{{ url('booking') }}/available-rooms/" + _checkindate,
+                    dataType: 'json',
+
+                    // beforeSend: function() {
+                    //     $(".room-list").append('<option>--- Loading ---</option>');
+                    // },
+                    success: function(res) {
+
+                        console.log(res);
+                        // var _html = '';
+                        $.each(res.data, function(key, value) {
+
+
+                            $(".room-list").append(
+                                '<option value = ' + value.id + ' >' + "Room No-" +
+                                value
+                                .RoomName + '</option>'
+                            );
+                        });
+
+
+
+
+                    }
+                    // }
+                });
+            });
+        });
+    </script>
+@endsection
