@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -83,7 +83,7 @@
                         <a class="nav-link text-dark" href="{{ route('booking.create') }}">
                             <i class="fas fa-door-open text-primary "></i>
                             <span>Book Room</span></a>
-                        <a class="nav-link text-dark" href="/bookedrooms">
+                        <a class="nav-link text-dark" href="/booking">
                             <i class="fas fa-door-closed text-primary  "></i>
                             <span>Booked Rooms</span></a>
 
@@ -105,7 +105,7 @@
                 <div id="rooms" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="nav-link text-dark" href="{{ route('room.create') }}">
+                        <a class="nav-link text-dark" href="{{ route('rooms.create') }}">
                             <i class="fas fa-plus-circle text-primary "></i>
                             <span>Create Room</span></a>
                         <a class="nav-link text-dark" href="/rooms">
@@ -131,7 +131,7 @@
                 <div id="customer" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="nav-link text-dark" href="{{ route('customer.create') }}">
+                        <a class="nav-link text-dark" href="{{ route('customers.create') }}">
                             <i class="fas fa-plus-circle text-primary "></i>
                             <span>Create Customer</span></a>
                         <a class="nav-link text-dark" href="/customers">
@@ -143,12 +143,12 @@
             </li>
 
             {{-- Users Navbar --}}
-            <div class="sidebar-heading text-white">
+            {{-- <div class="sidebar-heading text-white">
                 Users
-            </div>
+            </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user" aria-expanded="true"
                     aria-controls="user">
                     <i class="fas fa-users fa-cog"></i>
@@ -157,7 +157,7 @@
                 <div id="user" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
 
-                        <a class="nav-link text-dark" href="{{ route('user.create') }}">
+                        <a class="nav-link text-dark" href="">
                             <i class="fas fa-plus-circle text-primary "></i>
                             <span>Create User</span></a>
                         <a class="nav-link text-dark" href="/users">
@@ -166,7 +166,7 @@
 
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             <!-- Nav Item - Utilities Collapse Menu -->
 

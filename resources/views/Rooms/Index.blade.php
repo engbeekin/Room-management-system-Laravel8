@@ -21,7 +21,7 @@
 
                     </div>
                     <div class="col-2">
-                        <a href="{{ route('room.create') }}" type="button" class="btn btn-lg btn-primary ">
+                        <a href="{{ route('rooms.create') }}" type="button" class="btn btn-lg btn-primary ">
                             Add New Room
                         </a>
                     </div>
@@ -68,9 +68,9 @@
                                     <td>{{ $room->Floor ?? ' ' }} Floor </td>
                                     <td class="text-center">
 
-                                        <a href="{{ route('room.edit', $room->id) }}" type="button"
+                                        <a href="{{ route('rooms.edit', $room->id) }}" type="button"
                                             class="btn btn-circle btn-success"><i class="fas fa-edit"></i></a>
-                                        <a href="{{ route('room.delete', $room->id) }}" type="button"
+                                        <a href="{{ route('rooms.destroy', $room->id) }}" type="button"
                                             class="btn btn-circle btn-danger"><i class="fas fa-trash"></i></a>
 
 

@@ -43,7 +43,7 @@ class BookingController extends Controller
     public function store(Request $request)
     {
             Booking::create($request->all());
-            return redirect('/bookedrooms');
+            return redirect('/booking');
 
     }
 
@@ -84,7 +84,7 @@ class BookingController extends Controller
 
         $booking=Booking::findOrFail($id);
          $booking->update($request->all());
-        return redirect('/bookedrooms');
+        return redirect('/booking');
     }
 
     /**

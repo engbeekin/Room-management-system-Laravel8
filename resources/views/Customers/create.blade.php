@@ -3,7 +3,7 @@
 
 
     <div class="container  p-4">
-        <form action="{{ route('customer.store') }}" method="POST">
+        <form action="{{ route('customers.store') }}" method="POST">
             @csrf
             <div class="card border-left-primary text-dark  font-weight-bold ">
                 <div class="   card-header">

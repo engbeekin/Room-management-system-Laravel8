@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <h4 class="successmessage"></h4>
         <div class="">
-            <a href="{{ route('customer.create') }}" type="button" class="btn btn-primary ">
+            <a href="{{ route('customers.create') }}" type="button" class="btn btn-primary ">
                 Add New Customer
             </a>
 
@@ -76,7 +76,7 @@
                                         </td>
                                         <td class="text-center">
 
-                                            <a href="{{ route('customer.edit', $customer->id) }}"
+                                            <a href="{{ route('customers.edit', $customer->id) }}"
                                                 class="btn btn-circle btn-success"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('customer.delete', $customer->id) }}}" type="button"
                                                 class="btn btn-circle btn-danger"><i class="fas fa-trash"></i></a>

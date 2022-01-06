@@ -6,7 +6,7 @@
 
 
     <div class="container  p-4">
-        <form action="{{ route('room.store') }}" method="POST">
+        <form action="{{ route('rooms.store') }}" method="POST">
             @csrf
             <div class="card border-left-primary text-dark  font-weight-bold ">
                 <div class="   card-header">

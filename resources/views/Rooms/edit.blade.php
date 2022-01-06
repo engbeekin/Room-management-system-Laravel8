@@ -6,8 +6,9 @@
 
 
     <div class="container  p-4">
-        <form action="{{ route('room.update', $room->id) }}" method="POST">
+        <form action="{{ route('rooms.update', $room->id) }}" method="POST">
             @csrf
+            @method('PUT')
             <div class="card border-left-primary text-dark  font-weight-bold ">
                 <div class="   card-header">
                     <h3 class="text-dark font-weight-bold ">Edit Room Info</h3>

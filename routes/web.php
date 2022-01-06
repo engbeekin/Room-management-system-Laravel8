@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomsController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CustomersController;
+use App\Models\Booking;
+use App\Models\Customers;
+use App\Models\Rooms;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,42 +23,44 @@ use App\Http\Controllers\CustomersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $rooms=Rooms::count();
+    $customers=Customers::count();
+    $bookings=Booking::count();
+    return view('dashboard',compact('rooms','customers','bookings'));
 });
 
-Route::get('/rooms',[RoomsController::class,'index'] )->name('room');
-
-Route::get('/fetchrooms',[RoomsController::class,'allRooms'] );
-Route::get('/room/create',[RoomsController::class,'create'] )->name('room.create');
-
-Route::post('/room/store',[RoomsController::class,'store'] )->name('room.store');
-Route::get('/room/edit/{id}',[RoomsController::class,'edit'] )->name('room.edit');
-Route::post('/room/update/{id}',[RoomsController::class,'update'] )->name('room.update');
-Route::get('/room/delete/{id}',[RoomsController::class,'destroy'] )->name('room.delete');
 
 
 
-Route::get('/customers',[CustomersController::class,'index'] )->name('customer');
-Route::get('/customers/create',[CustomersController::class,'create'] )->name('customer.create');
 
-Route::post('/customers/store',[CustomersController::class,'store'] )->name('customer.store');
-Route::get('/allcustomers',[CustomersController::class,'allCustomers'] );
-Route::get('/customers/edit/{id}',[CustomersController::class,'edit'] )->name('customer.edit');
-Route::post('/customers/update/{id}',[CustomersController::class,'update'] )->name('customer.update');
-Route::get('/customers/delete/{id}',[CustomersController::class,'destroy'] )->name('customer.delete');
 
-Route::get('/bookedrooms',[BookingController::class,'index'] );
-
-Route::get('/booking/create',[BookingController::class,'create'] )->name('booking.create');
-Route::post('/booking/store',[BookingController::class,'store'] )->name('booking.store');
-// Route::get('/booking/{id}',[BookingController::class,'edit'] )->name('booking.edit');
-// Route::post('/booking/{id}',[BookingController::class,'store'] )->name('booking.store');
-Route::get('booking/available-rooms/{checkin_date}',[BookingController::class,'available_rooms']);
 
 //  Users Routes
-Route::get('/users',[RegisterController::class,'index'])->name('users');
-Route::get('/user/create',[RegisterController::class,'addUser'])->name('user.create');
-Route::post('/user/create',[RegisterController::class,'store'])->name('user.store');
-Auth::routes();
+// Route::get('/users',[RegisterController::class,'index'])->name('users');
+// Route::get('/user/create',[RegisterController::class,'addUser'])->name('user.create');
+// Route::post('/user/create',[RegisterController::class,'store'])->name('user.store');
+Auth::routes([
+     'register' => false
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware'=>['auth']],function(){
+
+    // Rooms Routes
+    Route::resource('/rooms',RoomsController::class);
+    Route::get('/room/delete/{id}',[RoomsController::class,'destroy'] )->name('rooms.destroy');
+
+    //Customoers Routes
+    Route::resource('/customers',CustomersController::class);
+Route::get('/customers/delete/{id}',[CustomersController::class,'destroy'] )->name('customer.delete');
+
+// Booking Routes
+       Route::resource('/booking',BookingController::class);
+// booking filtering Route
+    Route::get('booking/available-rooms/{checkin_date}',[BookingController::class,'available_rooms']);
+
+    // users Route
+//    Route::get('/users',[RegisterController::class,'index'])->name('users');
+});
