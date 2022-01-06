@@ -14,10 +14,12 @@
 
                 <div class="row p-3 ">
                     <div class="col-6 text-dark"">
-                                                                                                    <div>
-                                                                                                        <label for=" check
-                        in" class="form-label text-dark"">Choose Customer Name</label>
-                                                                                                <select class="
+                                                                                                            <div>
+                                                                                                                <label for="
+                        check in" class="form-label text-dark"">Choose Customer Name</label>
+                                                                                                        <select class="
+
+
 
 
 
@@ -35,10 +37,10 @@
                         <label for="check in" class="form-label my-3">Check out</label>
                         <input type="date" class="form-control" name="checkout_date">
                     </div>
-                    <div>
+                    {{-- <div>
                         <label for="check in" class="form-label my-3">Total Staying Days</label>
                         <input type="number" class="form-control  " name="staying_days">
-                    </div>
+                    </div> --}}
 
                 </div>
 

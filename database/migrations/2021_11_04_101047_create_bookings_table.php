@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->foreignId('room_id');
             $table->dateTime('checkin_date');
             $table->dateTime('checkout_date');
-            $table->string('staying_days');
+
             $table->string('total_adults');
 
             $table->timestamps();

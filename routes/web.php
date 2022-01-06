@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\RegisterController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomsController;
@@ -9,7 +9,7 @@ use App\Http\Controllers\CustomersController;
 use App\Models\Booking;
 use App\Models\Customers;
 use App\Models\Rooms;
-use GuzzleHttp\Middleware;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +22,7 @@ use GuzzleHttp\Middleware;
 |
 */
 
-Route::get('/', function () {
 
-    $rooms=Rooms::count();
-    $customers=Customers::count();
-    $bookings=Booking::count();
-    return view('dashboard',compact('rooms','customers','bookings'));
-});
 
 
 
@@ -41,12 +35,20 @@ Route::get('/', function () {
 // Route::get('/user/create',[RegisterController::class,'addUser'])->name('user.create');
 // Route::post('/user/create',[RegisterController::class,'store'])->name('user.store');
 Auth::routes([
-     'register' => false
+     'register' => true
 ]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware'=>['auth']],function(){
+    // Dashboard Route
+    Route::get('/', function () {
+
+    $rooms=Rooms::count();
+    $customers=Customers::count();
+    $bookings=Booking::count();
+    return view('dashboard',compact('rooms','customers','bookings'));
+});
 
     // Rooms Routes
     Route::resource('/rooms',RoomsController::class);
